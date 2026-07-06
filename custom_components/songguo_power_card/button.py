@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from homeassistant.components.button import (
-    ButtonDeviceClass,
-    ButtonEntity,
-    ButtonEntityDescription,
-)
+from dataclasses import dataclass
+
+from homeassistant.components.button import ButtonDeviceClass, ButtonEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -16,31 +14,35 @@ from .coordinator import SongguoPowerCardCoordinator
 from .entity import SongguoPowerCardEntity
 
 
-class SongguoButtonDescription(ButtonEntityDescription):
+@dataclass(frozen=True)
+class SongguoButtonDescription:
     """Button description."""
 
+    key: str
+    translation_key: str
     value: int
+    device_class: ButtonDeviceClass | None = None
 
 
 BUTTONS: tuple[SongguoButtonDescription, ...] = (
-    SongguoButtonDescription(key="power_on", translation_key="power_on", value=1),
-    SongguoButtonDescription(key="power_off", translation_key="power_off", value=0),
+    SongguoButtonDescription("power_on", "power_on", 1),
+    SongguoButtonDescription("power_off", "power_off", 0),
     SongguoButtonDescription(
-        key="restart",
-        translation_key="restart",
-        value=25,
-        device_class=ButtonDeviceClass.RESTART,
+        "restart",
+        "restart",
+        25,
+        ButtonDeviceClass.RESTART,
     ),
     SongguoButtonDescription(
-        key="force_power_off",
-        translation_key="force_power_off",
-        value=14,
+        "force_power_off",
+        "force_power_off",
+        14,
     ),
     SongguoButtonDescription(
-        key="force_restart",
-        translation_key="force_restart",
-        value=2,
-        device_class=ButtonDeviceClass.RESTART,
+        "force_restart",
+        "force_restart",
+        2,
+        ButtonDeviceClass.RESTART,
     ),
 )
 
@@ -74,6 +76,8 @@ class SongguoPowerCardButton(
         super().__init__(coordinator, entry)
         self.entity_description = description
         self._attr_unique_id = f"{entry.entry_id}_{description.key}"
+        self._attr_translation_key = description.translation_key
+        self._attr_device_class = description.device_class
 
     async def async_press(self) -> None:
         """Send the power command."""
