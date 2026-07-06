@@ -11,7 +11,7 @@ from .api import SongguoApiClient
 from .const import CONF_ACCOUNT, CONF_DEVICE_NAME, CONF_PASSWORD, DEFAULT_NAME, DOMAIN
 from .coordinator import SongguoPowerCardCoordinator
 
-PLATFORMS = ["binary_sensor", "button"]
+PLATFORMS = ["binary_sensor", "button", "switch"]
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:

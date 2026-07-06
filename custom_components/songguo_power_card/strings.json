@@ -34,6 +34,11 @@
         "name": "Power"
       }
     },
+    "switch": {
+      "power_switch": {
+        "name": "Power switch"
+      }
+    },
     "button": {
       "power_on": {
         "name": "Power on"
