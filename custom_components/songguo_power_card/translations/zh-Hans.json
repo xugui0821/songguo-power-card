@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "松果电子电脑开机卡",
+        "description": "输入松果电子账号，设备会从 API 自动获取。",
+        "data": {
+          "account": "账号",
+          "password": "密码",
+          "name": "名称"
+        }
+      },
+      "device": {
+        "title": "选择设备",
+        "description": "从松果电子设备列表中选择一个设备。",
+        "data": {
+          "device_name": "设备"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法连接到松果电子 API。",
+      "invalid_auth": "松果电子账号或密码错误。",
+      "device_not_found": "未在松果电子设备列表中找到该设备。",
+      "no_devices": "此松果电子账号下没有找到设备。"
+    },
+    "abort": {
+      "already_configured": "此松果电子设备已配置。"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "power_state": {
+        "name": "电源"
+      }
+    },
+    "button": {
+      "power_on": {
+        "name": "开机"
+      },
+      "power_off": {
+        "name": "关机"
+      },
+      "restart": {
+        "name": "重启"
+      },
+      "force_power_off": {
+        "name": "强制关机"
+      },
+      "force_restart": {
+        "name": "强制重启"
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Songguo Power Card",
+        "description": "Enter your Songguo account. Devices will be loaded from the API.",
+        "data": {
+          "account": "Account",
+          "password": "Password",
+          "name": "Name"
+        }
+      },
+      "device": {
+        "title": "Choose device",
+        "description": "Select a device from your Songguo device list.",
+        "data": {
+          "device_name": "Device"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the Songguo API.",
+      "invalid_auth": "Invalid Songguo account or password.",
+      "device_not_found": "Device was not found in the Songguo device list.",
+      "no_devices": "No devices were found in this Songguo account."
+    },
+    "abort": {
+      "already_configured": "This Songguo device is already configured."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "power_state": {
+        "name": "Power"
+      }
+    },
+    "button": {
+      "power_on": {
+        "name": "Power on"
+      },
+      "power_off": {
+        "name": "Power off"
+      },
+      "restart": {
+        "name": "Restart"
+      },
+      "force_power_off": {
+        "name": "Force power off"
+      },
+      "force_restart": {
+        "name": "Force restart"
+      }
+    }
+  }
+}
